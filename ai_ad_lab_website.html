@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ad Lab — Copy & Creative Testing</title>
+<style>
+:root{--navy:#101d38;--blue:#4e5cff;--blue2:#357dff;--ink:#152342;--muted:#64769b;--line:#e4eaf5;--bg:#f7f9fe;--green:#0ba782}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:var(--bg)}
+header{height:64px;background:var(--navy);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 5.5%;position:sticky;top:0;z-index:5}
+.brand{font-size:22px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:10px}.flask{font-size:25px}
+nav{display:flex;gap:26px}nav a{color:#d8e1f7;text-decoration:none;font-size:14px;padding:23px 0}nav a.active,nav a:hover{color:white;border-bottom:3px solid #6474ff}
+.account{font-size:13px;color:#e0e7f8}
+.hero{padding:48px 7% 42px;background:radial-gradient(ellipse at 75% 40%,#dcdfff 0,transparent 38%),linear-gradient(110deg,#f8fbff,#eaf6ff);display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center}
+.pill{display:inline-block;padding:7px 13px;background:#e2eaff;color:#365cff;border-radius:20px;font-size:12px;font-weight:700}
+h1{font-size:clamp(32px,4vw,48px);line-height:1.06;letter-spacing:-1.5px;margin:14px 0;color:#142342}.gradient{color:var(--blue)}
+.hero p{font-size:16px;line-height:1.65;color:#41577e;max-width:550px}
+.btn{border:0;border-radius:10px;padding:12px 17px;font-weight:700;cursor:pointer;transition:.2s;font-size:13px}.btn-primary{background:linear-gradient(100deg,#5361ff,#4552f4);color:#fff;box-shadow:0 5px 12px #4d5cff26}.btn-primary:hover{transform:translateY(-1px);filter:brightness(1.04)}.btn-ghost{border:1px solid #cbd8f3;background:#ffffffa8;color:#2d4779;margin-left:10px}.hero-art{min-height:245px;position:relative;display:flex;align-items:center;justify-content:center}
+.mock-window{width:min(100%,470px);background:#ffffffd9;border:1px solid #d6def5;border-radius:18px;padding:18px;box-shadow:0 20px 45px #3d5db41c;transform:rotate(-1deg)}
+.mock-top{display:flex;justify-content:space-between;color:#6c7ba0;font-size:12px;margin-bottom:15px}.mock-ad{display:grid;grid-template-columns:1fr 1fr;gap:12px}.shoe{height:112px;border-radius:12px;background:linear-gradient(135deg,#132a4b,#567ab1);display:flex;align-items:center;justify-content:center;font-size:48px}.shoe.sky{background:linear-gradient(135deg,#b6e1fa,#f0f7ff)}.ad-copy{font-weight:800;font-size:18px;line-height:1.2;margin:12px 0}.tiny-btn{display:inline-block;background:var(--blue);color:white;padding:7px 12px;border-radius:20px;font-size:10px;font-weight:700}.floating{position:absolute;background:white;border:1px solid #e0e7f5;padding:12px 15px;border-radius:12px;box-shadow:0 8px 20px #1d3c7718;font-size:12px;font-weight:700}.float-a{left:0;top:20px}.float-b{right:0;bottom:15px}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:26px 7%;background:white;border-bottom:1px solid var(--line)}
+.feature{display:flex;gap:13px;align-items:center;border-right:1px solid #edf0f8;padding-right:12px}.feature:last-child{border:0}.feature-icon{height:48px;width:48px;flex-shrink:0;border-radius:12px;background:#eef1ff;display:grid;place-items:center;font-size:22px;color:var(--blue)}.feature strong{font-size:14px}.feature p{font-size:12px;line-height:1.45;color:var(--muted);margin:5px 0 0}
+main{padding:26px 5.8% 55px}.workspace{display:grid;grid-template-columns:.9fr 1.2fr;gap:16px}.panel{background:white;border:1px solid var(--line);border-radius:13px;padding:20px;box-shadow:0 3px 12px #15234205}.panel h2{font-size:18px;margin:0 0 5px;letter-spacing:-.3px}.sub{font-size:12px;color:var(--muted);margin:0 0 16px}
+.tabs{display:flex;gap:5px;background:#f7f9fd;border-radius:9px;padding:4px;margin-bottom:17px}.tab{flex:1;border:0;background:transparent;border-radius:7px;padding:10px 6px;font-size:12px;color:#506489;cursor:pointer}.tab.active{background:#edf0ff;color:#4256ff;font-weight:800}
+label{display:block;font-size:12px;color:#31466c;font-weight:650;margin:12px 0 7px}input,textarea,select{width:100%;border:1px solid #dce4f2;border-radius:7px;padding:10px 11px;font:inherit;font-size:12px;color:#263858;background:white;outline:none}input:focus,textarea:focus,select:focus{border-color:#7582ff;box-shadow:0 0 0 3px #6574ff18}textarea{min-height:82px;resize:vertical}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.full{width:100%;margin-top:13px}.output{margin-top:14px;display:none;border:1px solid #dce4ff;background:#f8f9ff;border-radius:10px;padding:14px}.output.show{display:block}.output h3{font-size:14px;margin:0 0 10px}.variant{padding:10px 0;border-top:1px solid #e4e9fb;font-size:13px}.variant small{display:block;color:#6b7ca1;margin-bottom:4px}.variant p{margin:0;line-height:1.45}.variant button{margin-top:7px;background:white;border:1px solid #d8e0f2;border-radius:6px;padding:5px 8px;font-size:11px;cursor:pointer}
+.right-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.link{font-size:12px;color:#4c5eff;cursor:pointer;background:none;border:0}
+.filter-tabs{display:flex;gap:20px;border-bottom:1px solid var(--line);margin:12px 0 15px}.filter-tabs button{background:none;border:0;padding:8px 0;color:#64769b;font-size:12px;cursor:pointer}.filter-tabs button.active{color:#4659ff;border-bottom:2px solid #5362ff;font-weight:800}
+.creatives{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 1.15fr;gap:9px}.creative{border:1px solid #e7ecf5;border-radius:9px;padding:7px;min-width:0}.creative-art{height:143px;border-radius:7px;padding:14px;color:white;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:radial-gradient(circle at 70% 80%,#4d719f,#0c1b32 68%)}.creative-art.two{background:linear-gradient(160deg,#a5dafa,#f2f9ff);color:#102342}.creative-art.three{background:linear-gradient(140deg,#121820,#293747)}.creative-art b{font-size:14px;line-height:1.15}.product{font-size:42px;text-align:center;filter:drop-shadow(0 7px 5px #0005)}.shop{align-self:flex-start;background:white;color:#1a2d4b;border-radius:5px;padding:4px 8px;font-size:9px;font-weight:800}.creative h3{font-size:12px;margin:9px 0 3px}.creative p{font-size:10px;color:#7786a4;margin:0 0 10px}.status{display:inline-block;border-radius:15px;padding:4px 7px;font-size:9px;font-weight:700;background:#eef2fa;color:#52688f}.status.win{background:#e0f8ef;color:#07946e}.winner{background:linear-gradient(160deg,#f0fbf7,#e4f8f1);border:1px solid #c9f0e4;border-radius:9px;padding:12px;min-width:0}.winner small{color:#078c6b;font-size:10px;font-weight:800}.winner h3{font-size:13px;margin:8px 0}.rate{font-size:30px;font-weight:850;color:#076d58;margin-top:15px}.rate span{font-size:14px;color:#0aa782}.winner p{font-size:10px;color:#648679}.metrics{border-top:1px solid #cdeee3;padding-top:10px;margin-top:12px}.metric{display:flex;justify-content:space-between;font-size:10px;color:#557b70;margin:8px 0}.winner .btn{width:100%;background:#0aa782;color:white;margin-top:8px;padding:10px 5px;font-size:11px}
+.bottom{display:grid;grid-template-columns:2.4fr .8fr;gap:14px;margin-top:14px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:11px;min-width:570px}th{text-align:left;color:#657799;background:#f7f9fd;font-weight:700}th,td{padding:12px 9px;border-bottom:1px solid #edf0f7}td{color:#334b73}.tip{background:linear-gradient(135deg,#f1f2ff,#f8f9ff);border-color:#e0e5ff}.tip-icon{font-size:25px}.tip h3{font-size:13px;margin:0 0 6px}.tip p{font-size:12px;color:#607299;line-height:1.6;margin:0}
+.toast{position:fixed;right:20px;bottom:20px;background:#142342;color:white;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px #10234233;display:none;font-size:13px;z-index:10}.toast.show{display:block}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}.hero-art{min-height:260px}.workspace{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.creatives{grid-template-columns:repeat(3,minmax(0,1fr))}.winner{grid-column:1/-1}.bottom{grid-template-columns:1fr}}
+@media(max-width:620px){header{padding:0 5%;height:58px}nav{gap:12px}nav a{font-size:12px}nav a:nth-child(4),nav a:nth-child(5),.account{display:none}.brand{font-size:19px}.hero{padding:35px 6%}.hero-art{min-height:220px}.floating{font-size:10px;padding:9px}.features{padding:20px 6%;gap:15px}.feature{border:0;align-items:flex-start}.feature-icon{height:40px;width:40px}.feature strong{font-size:12px}.feature p{font-size:11px}main{padding:18px 4% 40px}.panel{padding:15px}.three{grid-template-columns:1fr}.creatives{grid-template-columns:repeat(2,minmax(0,1fr))}.winner{grid-column:1/-1}.creative-art{height:130px}.hero h1{font-size:34px}.btn-ghost{margin:10px 0 0 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="flask">🧪</span> AI Ad Lab</div>
+  <nav><a class="active" href="#home">Home</a><a href="#create">Create</a><a href="#test">Test</a><a href="#results">Results</a><a href="#library">Library</a></nav>
+  <div class="account">☼ &nbsp; ◉ &nbsp; My Account⌄</div>
+</header>
+<section class="hero" id="home">
+  <div>
+    <span class="pill">Smarter Ads. Better Results.</span>
+    <h1><span class="gradient">AI</span> Ad Copy and<br>Creative Testing Lab</h1>
+    <p>Generate high-performing ad copy, create stunning visuals, and test what works — all in one place.</p>
+    <button class="btn btn-primary" onclick="document.querySelector('#create').scrollIntoView({behavior:'smooth'})">Start Creating &nbsp; →</button>
+    <button class="btn btn-ghost" onclick="showToast('Choose a product, generate several ad variations, then compare their results.')">▷ &nbsp; View How It Works</button>
+  </div>
+  <div class="hero-art">
+    <div class="floating float-a">✎ &nbsp; Generate Ad Copy</div>
+    <div class="mock-window"><div class="mock-top"><span>✦ AI Creative Preview</span><span>•••</span></div><div class="mock-ad"><div><div class="shoe">👟</div></div><div><div class="ad-copy">Better gear.<br>Bigger dreams.</div><span class="tiny-btn">Shop Now</span></div></div><div style="height:9px;background:#edf0fb;border-radius:8px;margin-top:16px"></div><div style="height:8px;background:#f1f3fb;border-radius:8px;width:66%;margin-top:8px"></div></div>
+    <div class="floating float-b">✧ &nbsp; A/B testing made simple</div>
+  </div>
+</section>
+<section class="features">
+  <div class="feature"><div class="feature-icon">✧</div><div><strong>AI-Powered Copywriting</strong><p>Get catchy, conversion-focused ad copy in seconds.</p></div></div>
+  <div class="feature"><div class="feature-icon">▧</div><div><strong>Creative Generation</strong><p>Create eye-catching images and variations with AI.</p></div></div>
+  <div class="feature"><div class="feature-icon">⚗</div><div><strong>A/B Testing</strong><p>Compare multiple versions and find the best performer.</p></div></div>
+  <div class="feature"><div class="feature-icon">▥</div><div><strong>Real Results</strong><p>Track performance and improve your campaigns.</p></div></div>
+</section>
+<main>
+<div class="workspace">
+  <section class="panel" id="create">
+    <h2>Create New Ad</h2><p class="sub">Tell us about your product or service, and build your next campaign.</p>
+    <div class="tabs"><button class="tab active" data-mode="copy">✎ Ad Copy</button><button class="tab" data-mode="image">▧ Image Creative</button><button class="tab" data-mode="full">◈ Full Ad</button></div>
+    <form id="adForm">
+      <label for="product">Product / Service Name <span style="color:#ef476f">*</span></label><input id="product" required placeholder="e.g. Wireless Earbuds">
+      <label for="description">Describe your product or goal <span style="color:#ef476f">*</span></label><textarea id="description" required placeholder="e.g. Highlight the key benefits, target audience, or special offers..."></textarea>
+      <div class="three"><div><label for="tone">Tone</label><select id="tone"><option>Friendly</option><option>Professional</option><option>Bold</option><option>Playful</option><option>Luxury</option></select></div><div><label for="audience">Target Audience</label><select id="audience"><option>General</option><option>Students</option><option>Young professionals</option><option>Parents</option><option>Small businesses</option></select></div><div><label for="platform">Platform</label><select id="platform"><option>Facebook / Instagram</option><option>Google Ads</option><option>TikTok</option><option>LinkedIn</option><option>YouTube</option></select></div></div>
+      <button class="btn btn-primary full" type="submit">✦ &nbsp; Generate Ad Variations</button>
+    </form>
+    <div class="output" id="output" aria-live="polite"><h3>✨ Your draft variations</h3><div id="variants"></div><p style="font-size:10px;color:#7180a0;margin-bottom:0">Demo copy generated in your browser. Review claims before publishing.</p></div>
+  </section>
+  <section class="panel" id="test">
+    <div class="right-head"><div><h2>Test Your Creatives</h2><p class="sub">Compare sample versions and see what performs best.</p></div><button class="link" onclick="showToast('You are viewing all sample tests.')">View All Tests →</button></div>
+    <div class="filter-tabs"><button class="active" data-filter="all">All</button><button data-filter="copy">Ad Copy</button><button data-filter="image">Images</button><button data-filter="test">A/B Tests</button></div>
+    <div class="creatives" id="creativeGrid">
+      <article class="creative" data-type="image"><div class="creative-art"><b>Better gear.<br>Bigger dreams.</b><div class="product">👟</div><span class="shop">Shop Now</span></div><h3>Creative 1</h3><p>Image + Copy</p><span class="status win">Winner</span></article>
+      <article class="creative" data-type="image"><div class="creative-art two"><b>Comfort meets<br>performance.</b><div class="product">👟</div><span class="shop">Shop Now</span></div><h3>Creative 2</h3><p>Image + Copy</p><span class="status">Testing</span></article>
+      <article class="creative" data-type="copy"><div class="creative-art three"><b>Built for<br>every journey.</b><div class="product">👟</div><span class="shop">Shop Now</span></div><h3>Creative 3</h3><p>Image + Copy</p><span class="status">Testing</span></article>
+      <aside class="winner"><small>🏆 BEST PERFORMING AD</small><h3>Creative 1</h3><div class="rate">5.8% <span>↑</span></div><p>Higher CTR than average</p><div class="metrics"><div class="metric"><span>CTR</span><b>5.8%</b></div><div class="metric"><span>Conversions</span><b>3.2%</b></div><div class="metric"><span>Spend</span><b>$24.50</b></div></div><button class="btn" onclick="showToast('Sample performance details: 5.8% CTR, 3.2% conversions. These are illustrative demo metrics.')">View Details →</button></aside>
+    </div>
+  </section>
+</div>
+<div class="bottom" id="results">
+  <section class="panel" id="library"><h2>Recent Tests</h2><p class="sub">Your latest ad copy and creative experiments.</p><div class="table-wrap"><table><thead><tr><th>Name</th><th>Type</th><th>Platform</th><th>Created</th><th>Status</th><th>Performance</th></tr></thead><tbody id="recentRows"><tr><td>🟦 Wireless Earbuds – Summer Campaign</td><td>✎ Copy + Image</td><td>● Facebook / Instagram</td><td>Oct 23, 2026</td><td><span class="status win">Completed</span></td><td><b>5.8% CTR ↑</b></td></tr><tr><td>🟪 Everyday Running Shoes</td><td>✎ Ad Copy</td><td>▶ Google Ads</td><td>Oct 21, 2026</td><td><span class="status">Testing</span></td><td>Collecting data</td></tr></tbody></table></div></section>
+  <aside class="panel tip"><div class="tip-icon">💡</div><h3>Pro Tip</h3><p>Try 3–5 variations for each ad. Small changes in headlines or images can lead to big differences in performance.</p><button class="btn btn-ghost" style="margin:13px 0 0" onclick="showToast('Tip: change one element at a time to learn what actually improves performance.')">More tips</button></aside>
+</div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+let mode='copy';
+document.querySelectorAll('.tabs .tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tabs .tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');mode=btn.dataset.mode;}));
+document.querySelectorAll('.filter-tabs button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('.creative[data-type]').forEach(card=>card.style.display=(f==='all'||card.dataset.type===f||(f==='test'&&card.querySelector('.status:not(.win)')))?'block':'none');}));
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+document.getElementById('adForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const product=escapeHTML(document.getElementById('product').value.trim()),desc=escapeHTML(document.getElementById('description').value.trim()),tone=document.getElementById('tone').value,platform=document.getElementById('platform').value;
+ if(!product||!desc)return;
+ const headline1=`Meet your new favorite: ${product}.`;
+ const headline2=`Make every day better with ${product}.`;
+ const headline3=`Ready for more? Discover ${product}.`;
+ const body=`${desc.charAt(0).toUpperCase()+desc.slice(1)}. Find the right fit for you today.`;
+ const ideas=[['Variation A — Benefit-led',headline1,body,'Learn More'],['Variation B — Everyday value',headline2,`A simple way to bring more value to your day. Explore ${product} and see the difference.`, 'Shop Now'],['Variation C — Curiosity-led',headline3,`Discover what makes ${product} worth a closer look. ${desc}`, 'Discover More']];
+ document.getElementById('variants').innerHTML=ideas.map((v,i)=>`<div class="variant"><small>${v[0]} · ${tone} · ${platform}</small><b>${v[1]}</b><p>${v[2]}</p><button onclick="copyText('${(v[1]+' '+v[2]+' '+v[3]).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">Copy variation</button></div>`).join('');
+ document.getElementById('output').classList.add('show');document.getElementById('output').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+function copyText(s){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(()=>showToast('Ad variation copied.')).catch(()=>showToast(s));}else showToast(s);}
+let toastTimer;function showToast(message){const el=document.getElementById('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200);}
+</script>
+</body>
+</html>
